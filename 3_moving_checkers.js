@@ -1,25 +1,24 @@
 function move(s) {
   const n = s.length;
-  const t = s[n - 1];
-  if(n === 4) {
-    if(t === "AAABBB____") { console.log("%s → %s → %s → %s", ...s); }
+  if(n === 49) {
+    if(s.endsWith("AAABBB____")) { console.log("%s", s); }
     return;
   }
 
   for(let i = 0; i < 9; i++) {
-    if(t[i] !== "_" && t[i + 1] !== "_") {
+    if(s[n - 10 + i] !== "_" && s[n - 9 + i] !== "_") {
       for(let j = 0; j < 9; j++) {
-        if(t[j] === "_" && t[j + 1] === "_") {
-          const p = t.split("");
+        if(s[n - 10 + j] === "_" && s[n - 9 + j] === "_") {
+          const p = s.slice(-10).split("");
           p[j] = p[i];
           p[i] = "_";
           p[j + 1] = p[i + 1];
           p[i + 1] = "_";
-          move([...s, p.join("")]);
+          move(s + " → " + p.join(""));
         }
       }
     }
   }
 }
 
-move(["____BABABA"]);
+move("____BABABA");
