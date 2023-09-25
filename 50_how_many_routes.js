@@ -1,15 +1,10 @@
-function popcount8(x) {
-  x = (x & 0x55) + ((x >> 1) & 0x55);
-  x = (x & 0x33) + ((x >> 2) & 0x33);
-  x = (x & 0x0F) + ((x >> 4) & 0x0F);
-  return x;
-}
-
 let n = 0;
 
-for(let i = 0; i < 256; i++) {
-  if(popcount8(i) === 4) {
-    n++;
+for(let a = 3; a < 8; a++) {
+  for(let b = 2; b < a; b++) {
+    for(let c = 1; c < b; c++) {
+      n += c;
+    }
   }
 }
 
